@@ -1,0 +1,24 @@
+{% extends 'mainapp/base.html' %}
+{% load staticfiles %}
+{'product': product}
+
+{% block content %}
+<div class="conteiner justify-content-center row ">
+    <div class="card mb-3 " style="max-width: 1000px; margin-top: 15px; ">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="/media/{{ product.image }}" alt="{{ product.short_desc }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3 class="card-title">{{ product.name }}</h3>
+                    <p class="card-text"><b>Состав: </b>{{ product.description }}</p>
+                    <p class="card-text"><b>Цена: </b>{{ product.price }} <span>рублей</span></p>
+                    <p class="card-text"><b>Вес: </b>{{ product.weight }} <span>грамм</span></p>
+                    <a href="#" class="card-link">Заказать</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

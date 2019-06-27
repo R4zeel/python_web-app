@@ -1,0 +1,26 @@
+{% extends 'mainapp/base.html' %}
+{% load staticfiles %}
+{'categories': categories}
+
+{% block content %}
+<div class="content">
+    <div class="hot_products">
+        <h3 class="h3">КАТЕГОРИИ ПРОДУКТОВ</h3>
+        <div class="hot_products_is">
+            {% for category in categories %}
+            <a class="link_product_image_index" href="#">
+                <div class="hot_product category_index">
+                    <p class="hot_product_name">{{category.name}}</p>
+                </div>
+            </a>
+
+
+            {% endfor %}
+        </div>
+
+
+    </div>
+
+
+</div>
+{% endblock %}

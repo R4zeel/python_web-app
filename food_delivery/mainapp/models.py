@@ -25,6 +25,7 @@ class Product(models.Model):
     short_desc = models.CharField(verbose_name='краткое описание продукта', max_length=60, blank=True)
     description = models.TextField(verbose_name='описание продукта', blank=True)
     price = models.DecimalField(verbose_name='цена продукта', max_digits=8, decimal_places=2, default=0)
+    weight = models.DecimalField(verbose_name='вес порции', max_digits=8, decimal_places=2, default=0)
     quantity = models.PositiveIntegerField(verbose_name='количество на складе', default=0)
 
     def __str__(self):

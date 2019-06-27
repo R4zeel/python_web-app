@@ -6,11 +6,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Food Hub</title>
+    <title>
+        {% block title %}
+            {{ title|title }}
+        {% endblock %}
+    </title>
     <!-- Bootstrap core CSS -->
     <link href="{% static 'assets/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
 
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style_1.css' %}" rel="stylesheet">
 
     <!-- styles needed for carousel slider -->
     <link href="{% static 'assets/plugins/owl-carousel/owl.carousel.css' %}" rel="stylesheet">
@@ -58,7 +63,7 @@
 
     			<div class="navbar-collapse collapse">
     				<ul class="nav navbar-nav ml-auto navbar-right">
-    					<li class="nav-item"><a href="#" class="nav-link"><i class="icon-th-thumb"></i> All Ads</a>
+    					<li class="nav-item"><a href="{% url 'main' %}" class="nav-link"><i class="icon-th-thumb"></i> Главная</a>
     					</li>
     					<li class="dropdown no-arrow nav-item"><a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 
@@ -69,7 +74,7 @@
 
     							</a>
     							</li>
-    							<li class="dropdown-item"><a href="#"><i class="icon-th-thumb"></i> My ads </a>
+    							<li class="dropdown-item"><a href="{% url 'catalog' %}"><i class="icon-th-thumb"></i> Каталог </a>
     							</li>
     							<li class="dropdown-item"><a href="#"><i class="icon-heart"></i> Favourite ads </a>
     							</li>
