@@ -1,0 +1,30 @@
+[
+	{
+		"name": "Бургер",
+		"description": "еда"
+	},
+	{
+		"name": "Пицца",
+		"description": "еда"
+	},
+	{
+		"name": "Ролл",
+		"description": "еда"
+	},
+	{
+		"name": "Суши",
+		"description": "еда"
+	},
+	{
+		"name": "Спагетти",
+		"description": "еда"
+	},
+	{
+		"name": "Лазанья",
+		"description": "еда"
+	},
+	{
+		"name": "Котлеты",
+		"description": "еда"
+	}
+]

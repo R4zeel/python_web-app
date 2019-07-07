@@ -1,0 +1,17 @@
+{% for item in basket_items %}
+<div class="card" style="width: 18rem;">
+  <img src="/media/{{ item.product.image }}" class="card-img-top" alt="{{ item.product.short_desc }}">
+  <div class="card-body">
+    <h5 class="card-title">{{ item.product.name }}</h5>
+    <p class="card-text">{{ item.product.price }} рублей</p>
+    <a href="{% url 'basket:remove' item.pk %}" class="btn btn-danger">удалить</a>
+  </div>
+</div>
+{% endfor %}
+{% if basket_items %}
+<div class="basket_summary">
+    In basket {{ basket_items.0.total_quantity }} Общая стоимость заказа
+    {{ basket_items.0.total_cost }} рублей
+</div>
+{% endif %}
+

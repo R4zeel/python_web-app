@@ -1,0 +1,30 @@
+{% extends 'mainapp/base.html' %}
+{% load staticfiles %}
+{'title': title, 'restoran': restoran, 'products': products,}
+{% block content %}
+
+<div class="content">
+    <div class="hot_products">
+        <h3 class="h3">Продукты</h3>
+        <h3 class="h3">{{restoran.name}}</h3>
+
+        <div class="hot_products_is">
+            {% for product in products %}
+            <a class="link_product_image_index" href="#">
+                <div class="restoran_of_category">
+
+                    <img class="restoran_image" src="/media/{{ product.image }}"
+                         style="width: 248px; height: 248px">
+                    {{product.name}}
+
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+
+
+    </div>
+</div>
+
+
+{% endblock %}

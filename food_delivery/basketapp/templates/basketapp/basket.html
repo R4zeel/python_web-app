@@ -1,0 +1,17 @@
+{% extends 'mainapp/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="basket_list">
+    {% include 'basketapp/includes/inc_basket_list.html' %}
+</div>
+<button class="btn btn-success">
+    <a href="#">
+        Заказать
+    </a>
+</button>
+<button class="btn btn-success">
+    <a href="{% url 'main' %}">
+        Главная
+    </a>
+</button>
+{% endblock %}
