@@ -1,5 +1,7 @@
 .hot_products {
     margin-top: 15px;
+    /*padding-left: 180px;*/
+    /*padding-right: 180px;*/
 
 }
 
@@ -18,12 +20,10 @@
 }
 
 
-
 .product_image_index {
     width: 248px;
     height: 248px;
 }
-
 
 
 .hot_product_hover {
@@ -50,4 +50,19 @@
 .category_index {
     text-align: center;
     padding-top: 100px;
+}
+
+.restoran_of_category {
+    width: 250px;
+    /*border: 1px solid #000;*/
+    margin: 5px 5px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+    text-decoration: none;
+    color: black;
+}
+
+.restoran_image {
+    /*border: 1px solid #000;*/
 }

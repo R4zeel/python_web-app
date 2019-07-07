@@ -1,6 +1,6 @@
 {% extends 'mainapp/base.html' %}
 {% load staticfiles %}
-{'title': title, 'products': hot_products, 'categories': categories,}
+{'title': title, 'products': hot_product, 'categories': categories,}
 
 {% block content %}
 
@@ -15,7 +15,7 @@
                 <img class="product_image_index" src="/media/{{ product.image }}" alt="{{product.short_desc}}"
                      style="width: 248px; height: 248px">
 
-                <a class="link_product_image_index" href="{% url 'product:product' product.pk %}">
+                <a class="link_product_image_index" href="#">
                     <div class="hot_product_hover">
                         <p class="hot_product_name">{{product.name}}</p>
                     </div>
@@ -34,7 +34,7 @@
             {% for category in categories %}
 
 
-            <a class="link_product_image_index" href="#">
+            <a class="link_product_image_index" href="{% url 'restoran_of_category' category.pk %}">
                 <div class="hot_product category_index">
                     <p class="hot_product_name">{{category.name}}</p>
                 </div>

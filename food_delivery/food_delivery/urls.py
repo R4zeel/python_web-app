@@ -26,9 +26,12 @@ from django.conf.urls import include
 
 urlpatterns = [
     path('', mainapp.main, name='main'),
+    path('catalog/', mainapp.CompanyCatalogView.as_view(), name='catalog'),
     path('admin/', admin.site.urls),
-    path('catalog/', mainapp.catalog, name='catalog'),
-    path('product/', include('mainapp.urls', namespace='product')),
+    path('category/<int:pk>', mainapp.restoran_of_category, name='restoran_of_category'),
+    path('basket/', include('basketapp.urls', namespace='basket')),
+    path('restoran/<int:pk>', mainapp.products_restoran, name='products_restoran'),
+    path('auth/', include('authapp.urls', namespace='auth'))
 ]
 
 if settings.DEBUG:

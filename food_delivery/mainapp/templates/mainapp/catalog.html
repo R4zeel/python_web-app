@@ -1,26 +1,187 @@
 {% extends 'mainapp/base.html' %}
 {% load staticfiles %}
-{'categories': categories}
 
 {% block content %}
-<div class="content">
-    <div class="hot_products">
-        <h3 class="h3">КАТЕГОРИИ ПРОДУКТОВ</h3>
-        <div class="hot_products_is">
-            {% for category in categories %}
-            <a class="link_product_image_index" href="#">
-                <div class="hot_product category_index">
-                    <p class="hot_product_name">{{category.name}}</p>
-                </div>
-            </a>
-
-
-            {% endfor %}
+    <div class="search-row-wrapper" style="background-image: url({% static 'images/bg.jpg' %})">
+        <div class="inner">
+            <div class="container ">
+                <form action="#" method="GET">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <input class="form-control keyword" type="text" placeholder="Укажите мето доставки">
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-block btn-primary btn-gradient"> Search <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
+    </div>
+    <div class="main-container">
+        <div class="container">
+            <div class="row">
+                <!-- this (.mobile-filter-sidebar) part will be position fixed in mobile version -->
+                <div class="col-md-3 page-sidebar mobile-filter-sidebar">
+                    <aside>
+                        <div class="sidebar-modern-inner">
+                            <div class="block-title has-arrow sidebar-header">
+                                <h5><a href="#">Категории</a></h5>
+                            </div>
+                            <div class="block-content categories-list  list-filter ">
+                                <ul class=" list-unstyled">
+                                    {% for category in categories %}
+                                        <li>
+                                            <a href="{% url 'restoran_of_category' category.pk %}">
+                                                <span class="title">{{ category.name }}</span>
+                                                <span class="count">&nbsp;8626</span>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>  <!--/.categories-list-->
+
+                            <div class="block-title has-arrow">
+                                <h5><a href="#">Seller </a></h5>
+                            </div>
+                            <div class="block-content categories-list  list-filter ">
+                                <ul class="browse-list list-unstyled ">
+                                    <li><a href="sub-category-sub-location.html"><strong>All Ads</strong> <span
+                                            class="count">228,705</span></a></li>
+                                    <li><a href="sub-category-sub-location.html">Business <span
+                                            class="count">28,705</span></a></li>
+                                    <li><a href="sub-category-sub-location.html">Private <span
+                                            class="count">18,705</span></a></li>
+                                </ul>
+                            </div>
+                            <!--/.list-filter-->
+
+                            <div class="block-title has-arrow">
+                                <h5><a href="#">Condition</a></h5>
+                            </div>
+                            <div class="block-content categories-list  list-filter ">
+                                <ul class="browse-list list-unstyled ">
+                                    <li><a href="sub-category-sub-location.html">New <span class="count">228,705</span></a>
+                                    </li>
+                                    <li><a href="sub-category-sub-location.html">Used <span class="count">28,705</span></a>
+                                    </li>
+                                    <li><a href="sub-category-sub-location.html">None </a></li>
+                                </ul>
+                            </div>
+                            <!--/.list-filter-->
+                            <div style="clear:both"></div>
+                        </div>
 
 
+                        <!--/.categories-list-->
+                    </aside>
+                </div>
+                <!--/.page-side-bar-->
+                <div class="col-md-9 page-content col-thin-left">
+
+                    <div class="category-list ">
+
+
+                        <!-- Mobile Filter bar-->
+                        <div class="mobile-filter-bar col-xl-12  ">
+                            <ul class="list-unstyled list-inline no-margin no-padding">
+                                <li class="filter-toggle">
+                                    <a class="">
+                                        <i class="  icon-th-list"></i>
+                                        Filters
+                                    </a>
+                                </li>
+                                <li>
+
+
+                                    <div class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle"> Short
+
+                                        by </a>
+                                        <ul class="dropdown-menu">
+                                            <li class="dropdown-item"><a href="" rel="nofollow">Relevance</a>
+                                            </li>
+                                            <li class="dropdown-item"><a href="" rel="nofollow">Date</a>
+                                            </li>
+                                            <li class="dropdown-item"><a href="" rel="nofollow">Company</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="menu-overly-mask"></div>
+                        <!-- Mobile Filter bar End-->
+
+
+                        <div class="tab-content">
+                            <div class="tab-pane  active " id="alladslist">
+                                <div class="adds-wrapper row no-margin">
+                                    <div class="item-list">
+                                        {% for object in object_list %}
+                                            <div class="row">
+
+
+                                                <div class="col-md-5 no-padding photobox">
+                                                    <div class="add-image">
+                                                        <a href="#">
+                                                            <img class="thumbnail no-margin"
+                                                                 src="/media/{{ object.image }}" alt="img">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <!--/.photobox-->
+                                                <div class="col-md-5 add-desc-box">
+                                                    <div class="ads-details">
+                                                        <h5 class="add-title">
+                                                            <a href="#">{{ object.name }}</a>
+                                                        </h5>
+                                                        <span class="info-row"> <span
+                                                                class="add-type business-ads tooltipHere"
+                                                                data-toggle="tooltip" data-placement="right" title=""
+                                                                data-original-title="Business Ads">B </span>
+                                    <span class="date"><i class=" icon-clock"> </i> Today 1:21 pm</span>- <span
+                                                                    class="category">Electronics </span>-
+                                        <span class="item-location"><i class="fa fa-map-marker-alt"></i> New York</span>
+                                            </span>
+                                                    </div>
+                                                </div>
+                                                <!--/.add-desc-box-->
+                                                <div class="col-md-2 text-right  price-box">
+                                                    <h2 class="item-price"> средний чек 320 </h2>
+                                                </div>
+                                                <!--/.add-desc-box-->
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pagination-bar text-center">
+                        <nav aria-label="Page navigation " class="d-inline-b">
+                            <ul class="pagination">
+
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                <li class="page-item"><a class="page-link" href="#">...</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!--/.pagination-bar -->
+
+                </div>
+                <!--/.page-content-->
+
+            </div>
+        </div>
     </div>
 
-
-</div>
 {% endblock %}
