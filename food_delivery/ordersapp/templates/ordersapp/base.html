@@ -2,7 +2,6 @@
 {% load staticfiles %}
 
 <html lang="en" dir="ltr">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,27 +36,26 @@
         paceOptions = {
             elements: true
         };
-
     </script>
     <script src="{% static 'assets/js/pace.min.js' %}"></script>
     <script src="{% static 'assets/plugins/modernizr/modernizr-custom.js' %}"></script>
 
 
 </head>
-
 <body>
 <div id="wrapper">
 
     <div class="header">
-        <nav class="navbar  fixed-top navbar-site navbar-light bg-light navbar-expand-md" role="navigation">
+        <nav class="navbar  fixed-top navbar-site navbar-light bg-light navbar-expand-md"
+             role="navigation">
             <div class="container">
 
                 <div class="navbar-identity">
 
 
                     <div class="navbar-brand logo logo-title">
-                            <span class="logo-icon"><i class="icon icon-search-1 ln-shadow-logo "></i>
-                            </span>food<span>Delivery </span>
+    			<span class="logo-icon"><i class="icon icon-search-1 ln-shadow-logo "></i>
+    			</span>food<span>Delivery </span>
                     </div>
 
 
@@ -75,7 +73,8 @@
 
                             <span>{{user.first_name|default:'Пользователь'}}</span> <i class="icon-user fa"></i> <i
                                 class=" icon-down-open-big fa"></i></a>
-                            <ul class="dropdown-menu user-menu dropdown-menu-right">
+                            <ul
+                                    class="dropdown-menu user-menu dropdown-menu-right">
                                 <li class="active dropdown-item"><a href="#"><i class="icon-home"></i> Personal Home
 
                                 </a>
@@ -83,10 +82,11 @@
                                 <li class="dropdown-item"><a href="#"><i class="icon-th-thumb"></i>
                                     Каталог </a>
                                 </li>
-                                <li class="dropdown-item"><a href="{% url 'basket:view' %}"><i class="icon-heart"></i>
-                                    Корзина </a>
+                                <li class="dropdown-item"><a href="{% url 'basket:view' %}"><i class="icon-heart"></i> Корзина </a>
                                 </li>
-                                <li class="dropdown-item"><a href="{% url 'auth:edit' %}"><i class="icon-star-circled"></i>Редактирование                                </a>
+                                <li class="dropdown-item"><a href="#"><i class="icon-star-circled"></i> Saved search
+
+                                </a>
                                 </li>
                                 <li class="dropdown-item"><a href="#"><i class="icon-folder-close"></i> Archived ads
 
@@ -104,17 +104,6 @@
                         </li>
                         {% endif%}
 
-                        <li class="nav-item"><a href="{% url 'basket:view' %}" class="nav-link">
-                            <div class="main_basket">
-                                <i class="icon-trash"></i> Корзина
-                            </div>
-
-                            <span>
-                                    {% if basket %}
-                                    {{ basket.0.get_product_cost|floatformat:0 }} рублей <br>({{ basket.0.get_total_quantity }} тов.)
-                                    {% endif %}                             </span></a>
-                        </li>
-
 
                         <li class="postadd nav-item">
                             {% if user.is_authenticated %}
@@ -125,8 +114,6 @@
                                href="{% url 'auth:login' %}">Войти</a>
                             {% endif %}
                         </li>
-
-
                     </ul>
                 </div>
                 <!--/.nav-collapse -->
@@ -135,7 +122,6 @@
         </nav>
     </div>
     <!-- /.header -->
-
     <div class="content_main">
         {% block content %}
 
@@ -285,14 +271,11 @@
 <!-- Placed at the end of the document so the pages load faster -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-    window.jQuery || document.write('<script src="{% static '
-    assets / js / jquery / jquery - 3.3
-    .1.min.js
-    ' %}">\x3C/script>'
-    )
-
-</script>
+<script>window.jQuery || document.write('<script src="{% static '
+assets / js / jquery / jquery - 3.3
+.1.min.js
+' %}">\x3C/script>'
+)</script>
 
 <script src="{% static 'assets/js/vendors.min.js' %}"></script>
 
@@ -310,5 +293,4 @@
 
 
 </body>
-
 </html>

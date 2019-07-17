@@ -23,7 +23,9 @@ def basket(request):
 @login_required
 def basket_add(request, pk):
     product = get_object_or_404(Products, pk=pk)
-
+    if 'login' in request.META.get('HTTP_REFERER'):
+        return HttpResponseRedirect(
+            reverse('catalog:products_list', args=[product.restaurant__pk, product.category__pk]))
     basket = Basket.objects.filter(user=request.user, product=product).first()
     basket_user = Basket.objects.filter(user=request.user)
     restauran = product.restaurant
@@ -31,7 +33,7 @@ def basket_add(request, pk):
         if not basket_user or product.restaurant == basket_user[0].restauran:
             basket = Basket(user=request.user, product=product, restauran=restauran)
         else:
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            return HttpResponseRedirect(reverse('basket:control', args=[product.pk]))
 
     basket.quantity += 1
     basket.save()
@@ -67,3 +69,27 @@ def basket_edit(request, pk, quantity):
         content = {'basket_items': basket_items}
         result = render_to_string('basketapp/includes/inc_basket_list.html', content)
         return JsonResponse({'result': result})
+
+@login_required
+def control(request, pk):
+    basket = Basket.objects.filter(user=request.user).first()
+    print('Привет', basket)
+    product = Products.objects.get(pk=pk)
+    content = {'product': product, 'basket': basket}
+    return render(request, 'basketapp/control.html', content)
+
+
+@login_required
+def delete_all(request, pk):
+    basket = Basket.objects.filter(user=request.user)
+    print(basket)
+    basket.delete()
+    product = Products.objects.get(pk=pk)
+    print('Привет', product.restaurant.pk, product.category.pk)
+    return HttpResponseRedirect(reverse('catalog:products_list', args=[product.restaurant.pk, product.category.pk]))
+
+
+@login_required
+def ret(request):
+    product = Basket.objects.filter(user=request.user).first()
+    return HttpResponseRedirect(reverse('catalog:products_list', args=[product.restauran.pk, 0]))

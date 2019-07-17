@@ -1,0 +1,16 @@
+{% extends 'basketapp/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<h4>Вы хотите добавит продукт другого ресторана, но заказ может формироваться только одним поставщиком.</h4>
+
+<h4>Выхотите удалить продукты из ресторана {{ basket.restauran }} и начать заказывать из ресторана {{ product.restaurant }}</h4>
+
+<button class="form-control">
+    <a href="{% url 'basket:delete_all' product.pk %}" class="">ДА</a>
+</button>
+<button class="form-control">
+    <a href="{% url 'basket:ret' %}" class="">НЕТ</a>
+</button>
+
+{% endblock %}

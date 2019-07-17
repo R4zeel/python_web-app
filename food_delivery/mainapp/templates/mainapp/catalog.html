@@ -9,7 +9,7 @@
         {% for restaurant in restaurant_list %}
         <div class="product-index">
             <img src="/media/{{ restaurant.image }}" alt="{{ restourant.short_desc }}" class="img-product-index">
-            <a href="{% url 'catalog:products' restaurant.pk %}" class="product-index-hover">{{ restaurant.name }}</a>
+            <a href="{% url 'catalog:products_list' restaurant.pk 0 %}" class="product-index-hover">{{ restaurant.name }}</a>
         </div>
         {% endfor %}
     </div>
