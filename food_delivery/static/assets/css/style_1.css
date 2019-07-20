@@ -173,3 +173,19 @@
     margin-bottom: 50px;
     margin-top: 50px;
 }
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form-position {
+    width: 400px;
+    margin-top: 20px;
+}
+
+.text-login {
+    font-size: 28px;
+    margin-top: 20px;
+}

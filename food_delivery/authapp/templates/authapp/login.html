@@ -3,7 +3,8 @@
 
 
 {% block content %}
-    <form class="" action="{% url 'auth:login' %}" method="post">
+    <div  class="login-form-position">
+    <form action="{% url 'auth:login' %}" method="post">
         {% csrf_token %}
         {% if next %}
             <input type="hidden" name="next" value="{{ next }}">
@@ -18,4 +19,5 @@
         <button class="form-control">
         <a href="{% url 'main' %}" class="">На главную страницу</a>
     </button>
+    </div>
 {% endblock %}
