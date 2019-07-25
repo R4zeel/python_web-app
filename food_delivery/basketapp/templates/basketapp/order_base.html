@@ -1,0 +1,61 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        {{ title|title }}
+        {% endblock %}
+    </title>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'assets/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style_1.css' %}" rel="stylesheet">
+
+    <!-- styles needed for carousel slider -->
+    <link href="{% static 'assets/plugins/owl-carousel/owl.carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/owl-carousel/owl.theme.css' %}" rel="stylesheet">
+
+    <!-- bxSlider CSS file -->
+    <link href="{% static 'assets/plugins/bxslider/jquery.bxslider.css' %}" rel="stylesheet"/>
+
+    <!-- Just for debugging purposes. -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- include pace script for automatic web page progress bar  -->
+    <script>
+        paceOptions = {
+            elements: true
+        };
+    </script>
+    <script src="{% static 'assets/js/pace.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/modernizr/modernizr-custom.js' %}"></script>
+
+
+</head>
+
+<body>
+<div class="basket_container" style="text-align: center">
+    <div class="h2 text-center head">
+        Заказы,
+        {% if user.first_name %}
+        {{ user.first_name|title }}
+        {% else %}
+        Пользователь
+        {% endif %}
+    </div>
+
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
