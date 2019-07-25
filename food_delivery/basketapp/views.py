@@ -155,7 +155,7 @@ def create_order(request):
     basket.delete()
     order_form = OrderForm()
 
-    return render(request, 'basketapp/create_order.html', {"order_form": order_form})
+    return HttpResponseRedirect(reverse('main'))
 
 
 def order_list(request):
@@ -168,7 +168,6 @@ def order_list(request):
     return render(request, 'basketapp/order_list.html', content)
 
 
-
 def order_delete(request, pk):
     order = get_object_or_404(Order, pk=pk)
 
@@ -176,3 +175,30 @@ def order_delete(request, pk):
     order.delete()
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def order_view(request, pk):
+    order = get_object_or_404(Order, pk=pk)
+
+    basket_items = OrderItems.objects.filter(order=pk)
+    total_quantity = 0
+    total_cost = 0
+    for item in basket_items:
+        total_quantity = total_quantity + int(item.quantity)
+        total_cost = total_cost + int(item.quantity) * int(item.product.price)
+    content = {'order': order, 'basket_items': basket_items, 'total_quantity': total_quantity, 'total_cost': total_cost}
+
+    return render(request, 'basketapp/order_view.html', content)
+
+
+def order_pay(request, pk):
+    item = get_object_or_404(Order, pk=pk)
+    item.status = 'PD'
+    item.save()
+    order = Order.objects.filter(user=request.user)
+
+    title = 'просмотр заказов'
+
+    content = {'title': title, 'order': order}
+
+    return render(request, 'basketapp/order_list.html', content)

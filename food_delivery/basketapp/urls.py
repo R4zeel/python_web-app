@@ -16,5 +16,7 @@ urlpatterns = [
     path('order/', basketapp.order, name='order'),
     path('create_order/', basketapp.create_order, name='create_order'),
     path('order_list/', basketapp.order_list, name='order_list'),
-    path('order_delete/<int:pk>/', basketapp.order_delete, name='order_delete')
+    path('order_delete/<int:pk>/', basketapp.order_delete, name='order_delete'),
+    path('order_view/<int:pk>/', basketapp.order_view, name='order_view'),
+    path('order_pay/<int:pk>/', basketapp.order_pay, name='order_pay'),
 ]

@@ -1,25 +1,51 @@
-{% extends 'basketapp/base.html' %}
+{% extends 'basketapp/order_base.html' %}
 {% load staticfiles %}
 
 {% block content %}
 
 <div class="basket_list">
+    {% for item in basket_items %}
+    <div class="basket_record">
+        <img src="/media/{{ item.product.image }}"
+             alt="{{ item.product.name }}" class="basket_records_img">
 
-{% include 'basketapp/includes/inc_basket_list.html' %}
+        <div class="basket_record_text">
+            <span class="category_name">Категория: {{ item.product.category.name }}</span>
+            <span class="product_name">Наименование: {{ item.product.name }}</span>
+            <span class="product_price">Цена: {{ item.product.price }}&nbspруб</span>
+            <span>Количество: {{item.quantity}}</span>
+            <span>Стоимость: {{item.get_product_cost}}</span>
+
+            <!--<input type="number" name="{{ item.pk }}" style="width: 60px; margin: auto"-->
+            <!--min="0"-->
+            <!--value="{{ item.quantity }}">-->
+            {# <span class="product_cost">Сумма: {{ item.product.price * item.quantity }}&nbspруб</span>#}
+
+
+            <!--<button class="btn btn-round">-->
+            <!--<a class="text_button" href="{% url 'basket:editt' item.pk %}" class="">-->
+            <!--редактировать-->
+            <!--</a>-->
+            <!--</button>-->
+
+        </div>
+
+    </div>
+
+
+    {% endfor %}
 </div>
-{% if basket_items %}
+{% if  basket_items %}
 <div class="basket_summary">
-    В корзине {{ basket_items.0.total_quantity }} товаров общей стоимостью
-    {{ basket_items.0.total_cost }} руб
+    В заказе {{ total_quantity }} товаров общей стоимостью
+    {{ total_cost }} руб
 </div>
 {% endif %}
 
 
 <button class="btn btn-round" style="text-align: center">
-    <a class="text_button" href="{% url 'basket:order' %}">купить</a>
+    <a class="text_button" href="{% url 'basket:order_list' %}">К списку заказов</a>
 
 </button>
-<button class="btn btn-round" style="text-align: center">
-    <a class="text_button" href="{% url 'main' %}">на главную</a>
-</button>
+
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends 'basketapp/base.html' %}
+{% extends 'basketapp/order_base.html' %}
 {% load staticfiles %}
 
 
@@ -14,13 +14,26 @@
 <table class="">
 
     <tbody>
+    <tr>
+        <th>№</th>
+        <th>ресторан</th>
+        <th>статус</th>
+    </tr>
+
     {% for item in order %}
 
     <tr>
+        <td title="{{item.get_products}}">
+            {{item.pk}}
+        </td>
         <td>
-            Заказа номер {{item.pk}}
+            {{item.get_restaurant}}
+        </td>
+        <td>
+            {{item.get_status_display}}
         </td>
 
+        {% if item.status == 'FM' %}
         <td>
 
             <a href="{% url 'basket:order_delete' item.pk %}">
@@ -28,10 +41,19 @@
             </a>
 
         </td>
+
         <td>
 
-            <a href="#">
+            <a href="{% url 'basket:order_pay' item.pk %}">
                 оплатить
+            </a>
+
+        </td>
+        {% endif %}
+        <td>
+
+            <a href="{% url 'basket:order_view' item.pk %}">
+                просмотреть
             </a>
 
         </td>

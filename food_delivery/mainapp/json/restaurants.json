@@ -2,42 +2,42 @@
   {
         "id": "1",
         "name": "Папа джонс",
-        "image": "",
+        "image": "restaurant_images/papa_dzhons.jpg",
         "description": "Ресторан"
 
     },
     {
         "id": "2",
         "name": "Планета суши",
-        "image": "",
+        "image": "restaurant_images/planjeta_sushi_msk.jpg",
         "description": "Ресторан"
 
     },
     {
         "id": "3",
         "name": "Бургер кинг",
-        "image": "",
+        "image": "restaurant_images/Burger-King.png",
         "description": "Ресторан"
 
     },
     {
         "id": "4",
         "name": "Воккер",
-        "image": "",
+        "image": "restaurant_images/Bokker.jpg",
         "description": "Ресторан"
 
     },
     {
         "id": "5",
         "name": "Макдональдс",
-        "image": "",
+        "image": "restaurant_images/mac.png",
         "description": "Ресторан"
 
     },
     {
         "id": "6",
         "name": "Доминос",
-        "image": "",
+        "image": "restaurant_images/dominos.png",
         "description": "Ресторан"
 
     }
