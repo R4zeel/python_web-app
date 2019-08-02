@@ -1,19 +1,28 @@
-from django.shortcuts import get_object_or_404, HttpResponseRedirect
+from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
-from django.db import transaction
-
-from django.forms import inlineformset_factory
-
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from django.views.generic.detail import DetailView
-
+from ordersapp.models import Order
+from django.views.generic import DeleteView
+from ordersapp.models import OrderItem
+from ordersapp.forms import OrderCreateForm
 from basketapp.models import Basket
-from ordersapp.models import Order, OrderItem
-from ordersapp.forms import OrderItemForm
 
+def OrderCreate(request):
+    basket = Basket(request)
+    if request.method == 'POST':
+        form = OrderCreateForm(request.POST)
+        if form.is_valid():
+            order = form.save()
+            for item in basket:
+                OrderItem.objects.create(order=order, product=item['product'],
+                                         price=item['price'],
+                                         quantity=item['quantity'])
+            basket.clear()
+            return render(request, 'ordersapp/created.html', {'order': order})
 
-class OrderList(ListView):
-   model = Order
+    form = OrderCreateForm()
+    return render(request, 'ordersapp/create.html', {'basket': basket,
+                                                        'form': form})
 
-   def get_queryset(self):
-       return Order.objects.filter(user=self.request.user)
+class OrderDelete(DeleteView):
+    model = Order
+    success_url = reverse_lazy('ordersapp:orders_list')

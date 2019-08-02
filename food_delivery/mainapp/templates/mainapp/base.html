@@ -9,7 +9,7 @@
 
     <title>
         {% block title %}
-        {{ title|title }}
+            {{ title|title }}
         {% endblock %}
     </title>
     <!-- Bootstrap core CSS -->
@@ -55,10 +55,12 @@
                 <div class="navbar-identity">
 
 
-                    <div class="navbar-brand logo logo-title">
+                    <a href="{% url 'main' %}">
+                        <div class="navbar-brand logo logo-title">
                             <span class="logo-icon"><i class="icon icon-search-1 ln-shadow-logo "></i>
                             </span>food<span>Delivery </span>
-                    </div>
+                        </div>
+                    </a>
 
 
                 </div>
@@ -70,41 +72,36 @@
                             Главная</a>
                         </li>
                         {% if user.is_authenticated %}
-                        <li class="dropdown no-arrow nav-item"><a href="#" class="dropdown-toggle nav-link"
-                                                                  data-toggle="dropdown">
+                            <li class="dropdown no-arrow nav-item"><a href="#" class="dropdown-toggle nav-link"
+                                                                      data-toggle="dropdown">
 
-                            <span>{{user.first_name|default:'Пользователь'}}</span> <i class="icon-user fa"></i> <i
-                                class=" icon-down-open-big fa"></i></a>
-                            <ul class="dropdown-menu user-menu dropdown-menu-right">
-                                <li class="active dropdown-item"><a href="#"><i class="icon-home"></i> Personal Home
+                                <span>{{ user.first_name|default:'Пользователь' }}</span> <i class="icon-user fa"></i>
+                                <i
+                                        class=" icon-down-open-big fa"></i></a>
+                                <ul class="dropdown-menu user-menu dropdown-menu-right">
+                                    <li class="active dropdown-item"><a href="#"><i class="icon-home"></i> Personal Home
 
-                                </a>
-                                </li>
-                                <li class="dropdown-item"><a href="#"><i class="icon-th-thumb"></i>
-                                    Каталог </a>
-                                </li>
-                                <li class="dropdown-item"><a href="{% url 'basket:view' %}"><i class="icon-heart"></i>
-                                    Корзина </a>
-                                </li>
-                                <li class="dropdown-item"><a href="{% url 'auth:edit' %}"><i
-                                        class="icon-star-circled"></i>Редактирование </a>
-                                </li>
-                                <li class="dropdown-item"><a href="{% url 'basket:order_list' %}"><i
-                                        class="icon-folder-close"></i> Заказы
+                                    </a>
+                                    </li>
+                                    <li class="dropdown-item"><a href="#"><i class="icon-th-thumb"></i>
+                                        Каталог </a>
+                                    </li>
+                                    <li class="dropdown-item"><a href="{% url 'basket:view' %}"><i
+                                            class="icon-heart"></i>
+                                        Корзина </a>
+                                    </li>
+                                    <li class="dropdown-item"><a href="{% url 'auth:edit' %}"><i
+                                            class="icon-star-circled"></i>Редактирование </a>
+                                    </li>
+                                    <li class="dropdown-item"><a href="{% url 'basket:order_list' %}"><i
+                                            class="icon-folder-close"></i> Заказы
 
-                                </a>
-                                </li>
-                                <li class="dropdown-item"><a href="#"><i class="icon-hourglass"></i> Pending
+                                    </a>
+                                    </li>
 
-                                    approval </a>
-                                </li>
-                                <li class="dropdown-item"><a href="#"><i class=" icon-money "></i> Payment history </a>
-                                </li>
-                                <li class="dropdown-item"><a href="#"><i class=" icon-logout "></i> Log out </a>
-                                </li>
-                            </ul>
-                        </li>
-                        {% endif%}
+                                </ul>
+                            </li>
+                        {% endif %}
 
                         <li class="nav-item"><a href="{% url 'basket:view' %}" class="nav-link">
                             <div class="main_basket">
@@ -113,18 +110,18 @@
 
                             <span>
                                     {% if basket %}
-                                    {{ basket.0.total_cost }} рублей <br>({{ basket.0.total_quantity }} тов.)
+                                        {{ basket.0.total_cost }} рублей <br>({{ basket.0.total_quantity }} тов.)
                                     {% endif %}                             </span></a>
                         </li>
 
 
                         <li class="postadd nav-item">
                             {% if user.is_authenticated %}
-                            <a class="btn btn-block   btn-border btn-post btn-danger nav-link"
-                               href="{% url 'auth:logout' %}">Выйти</a>
+                                <a class="btn btn-block   btn-border btn-post btn-danger nav-link"
+                                   href="{% url 'auth:logout' %}">Выйти</a>
                             {% else %}
-                            <a class="btn btn-block   btn-border btn-post btn-danger nav-link"
-                               href="{% url 'auth:login' %}">Войти</a>
+                                <a class="btn btn-block   btn-border btn-post btn-danger nav-link"
+                                   href="{% url 'auth:login' %}">Войти</a>
                             {% endif %}
                         </li>
 
@@ -288,7 +285,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-    window.jQuery || document.write('<script src="{% static '
+    window.jQuery || document.write('<script src="
+    {% static '
     assets / js / jquery / jquery - 3.3
     .1.min.js
     ' %}">\x3C/script>'

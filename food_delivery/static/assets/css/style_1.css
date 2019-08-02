@@ -68,7 +68,7 @@
 }
 
 .restoran_image {
-    /*border: 1px solid #000;*/
+    border: 1px solid #000;
 }
 
 .links-menu {
@@ -188,4 +188,16 @@
 .text-login {
     font-size: 28px;
     margin-top: 20px;
+}
+
+.order_td {
+    border: 1px solid #000;
+    text-align: center;
+    padding: 2px 5px;
+
+}
+
+.table_orders {
+    collapse: collapse;
+    margin: auto;
 }
