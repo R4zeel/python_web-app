@@ -11,30 +11,30 @@
     Пользователь
     {% endif %}
 </div>
-<table class="">
+<table class="table_orders">
 
     <tbody>
     <tr>
-        <th>№</th>
-        <th>ресторан</th>
-        <th>статус</th>
+        <th class="order_td">№</th>
+        <th class="order_td">ресторан</th>
+        <th class="order_td">статус</th>
     </tr>
 
     {% for item in order %}
 
     <tr>
-        <td title="{{item.get_products}}">
+        <td  class=order_td title="{{item.get_products}}">
             {{item.pk}}
         </td>
-        <td>
+        <td  class=order_td title="{{item.get_products}}" style="width: 200px">
             {{item.get_restaurant}}
         </td>
-        <td>
+        <td  class=order_td title="{{item.get_products}}" style="width: 200px">
             {{item.get_status_display}}
         </td>
 
         {% if item.status == 'FM' %}
-        <td>
+        <td class="">
 
             <a href="{% url 'basket:order_delete' item.pk %}">
                 удалить
@@ -42,7 +42,7 @@
 
         </td>
 
-        <td>
+        <td class="">
 
             <a href="{% url 'basket:order_pay' item.pk %}">
                 оплатить
@@ -50,7 +50,7 @@
 
         </td>
         {% endif %}
-        <td>
+        <td class="">
 
             <a href="{% url 'basket:order_view' item.pk %}">
                 просмотреть
